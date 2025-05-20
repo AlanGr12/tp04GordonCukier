@@ -1,0 +1,34 @@
+@{
+    ViewBag.Title = "Jugar";
+    string palabra = ViewBag.palabra;
+    int intentos = ViewBag.Intentos;
+    List<char> letrasUsadas = ViewBag.letrasUsadas;
+}
+
+<div style="text-align: center;">
+<h1>Adivina la palabra</h1>
+  <p>Palabra: @palabra</p>
+    <p>Intentos realizados: @intentos</p>
+    <p>Letras utilizadas:</p>
+
+<ul style = "list-style: none; padding: 0;">
+@foreach(char letra in letrasUsadas){
+    <li style = "display: inline; margin : 3px;">@letra</li>
+
+}
+</ul>
+
+  <form action='@Url.Action("Jugar", "Home")' method="POST">
+        <p>Ingresar una letra:</p>
+        <input type="text" name="letra" maxlength="1" required />
+
+        <button type="submit">Enviar letra</button>
+    </form>
+
+ <form action = '@Url.AQction("Jugar", "Home")'method = "POST">
+ <p> Ingresar una palabra: </p>
+
+ <input type = "text" name = "palabra"/>
+
+ <button type = "sumbit"> Enviar palabra</button>
+ </form>

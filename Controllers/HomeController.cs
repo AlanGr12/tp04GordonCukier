@@ -9,37 +9,61 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
 
  
-        public IActionResult Index()
-        {
-            return View(); 
+
+    public IActionResult Inicio()
+    {
+        Juego.reiniciar(); 
+        return View("Inicio");
+    }
+
+
+
+
+    [HttpGet]
+
+
+
+
+    public IActionResult jugar(){
+        if(Juego.juegoTerminado){
+
         }
+        ViewBag.PalabraParcial = Juego.palabraParcial;
+        ViewBag.Intentos = Juego.Intentos;
+        ViewBag.LetrasUsadas = Juego.LetrasUsadas;
 
-        public IActionResult NuevaPartida()
-        {
-            Juego.IniciarNuevaPartida();
-            return View("Jugar");
-        }
+        return View("Jugar");
+    }
 
-        public IActionResult Jugar()
-        {
-            if (Juego.JuegoTerminado)
+    [HttpPost]
 
-            return View(Juego.ObtenerEstado());
-        }
+    
 
-        [HttpPost]
-        public IActionResult EnviarLetra(char letra)
+    public IActionResult arriesgarLetra(char letra){
+
+               if (letra != '\0')
         {
             Juego.IntentarLetra(letra);
-            return RedirectToAction("Jugar");
         }
 
-        [HttpPost]
-        public IActionResult EnviarPalabra(string palabra)
-        {
-            Juego.IntentarPalabra(palabra);
-            return RedirectToAction("Jugar");
+        return View();
+    }
+
+
+    [HttpPost]
+
+
+    public IActionResult arriesgarPalabra(string palabra){
+        if(palabra != null){
+            Juego.intenterPalabra(palabra);
         }
 
-      
-}
+        return View();
+    }
+
+    public IActionResult Resultado(){
+        ViewBag.palabra = Juego.palabraOriginal;
+        return View("Resultado", Juego.gano);
+    }}
+
+    
