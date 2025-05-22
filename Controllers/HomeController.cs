@@ -18,7 +18,6 @@ public class HomeController : Controller
 
 
 
-
     [HttpGet]
 
 
@@ -26,7 +25,7 @@ public class HomeController : Controller
 
     public IActionResult jugar(){
         if(Juego.juegoTerminado){
-
+            return View("Resultado");
         }
         ViewBag.PalabraParcial = Juego.palabraParcial;
         ViewBag.Intentos = Juego.Intentos;
@@ -43,7 +42,7 @@ public class HomeController : Controller
 
                if (letra != '\0')
         {
-            Juego.IntentarLetra(letra);
+            Juego.arriesgarLetra(letra);
         }
 
         return View();
@@ -55,15 +54,15 @@ public class HomeController : Controller
 
     public IActionResult arriesgarPalabra(string palabra){
         if(palabra != null){
-            Juego.intenterPalabra(palabra);
+            Juego.arriesgarPalabra(palabra);
         }
 
         return View();
     }
 
     public IActionResult Resultado(){
-        ViewBag.palabra = Juego.palabraOriginal;
-        return View("Resultado", Juego.gano);
+     ViewBag.gano = Juego.gano;
+    return View("Resultado");
     }}
 
     

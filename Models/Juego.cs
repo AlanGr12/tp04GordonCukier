@@ -38,7 +38,7 @@ public static class Juego
     }
 
     
-    public static void IntentarLetra(char letra){
+    public static void arriesgarLetra(char letra){
 
       
         
@@ -76,7 +76,7 @@ public static class Juego
         }
     }
 
-         public static void intenterPalabra(string intento)
+         public static void arriesgarPalabra(string intento)
         {
             Intentos++;
 
